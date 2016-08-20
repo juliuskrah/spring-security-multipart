@@ -20,6 +20,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
+import org.hibernate.hikaricp.internal.HikariConfigurationUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -46,13 +47,14 @@ public class DataConfig {
 
 	private Properties properties() {
 		Properties props = new Properties();
-		props.setProperty("dataSourceClassName", env.getRequiredProperty("hibernate.hikari.dataSourceClassName"));
-		props.setProperty("dataSource.url", env.getRequiredProperty("hibernate.hikari.dataSource.url"));
-		props.setProperty("dataSource.user", env.getRequiredProperty("hibernate.hikari.dataSource.user"));
-		props.setProperty("dataSource.password", env.getRequiredProperty("hibernate.hikari.dataSource.password"));
-		props.setProperty("maximumPoolSize", env.getRequiredProperty("hibernate.hikari.maximumPoolSize"));
-		props.setProperty("idleTimeout", env.getRequiredProperty("hibernate.hikari.idleTimeout"));
-		props.setProperty("minimumIdle", env.getRequiredProperty("hibernate.hikari.minimumIdle"));
+		props.setProperty("hibernate.connection.provider_class", env.getRequiredProperty("hibernate.connection.provider_class"));
+		props.setProperty("hibernate.hikari.dataSourceClassName", env.getRequiredProperty("hibernate.hikari.dataSourceClassName"));
+		props.setProperty("hibernate.hikari.dataSource.url", env.getRequiredProperty("hibernate.hikari.dataSource.url"));
+		props.setProperty("hibernate.hikari.dataSource.user", env.getRequiredProperty("hibernate.hikari.dataSource.user"));
+		props.setProperty("hibernate.hikari.dataSource.password", env.getRequiredProperty("hibernate.hikari.dataSource.password"));
+		props.setProperty("hibernate.hikari.maximumPoolSize", env.getRequiredProperty("hibernate.hikari.maximumPoolSize"));
+		props.setProperty("hibernate.hikari.idleTimeout", env.getRequiredProperty("hibernate.hikari.idleTimeout"));
+		props.setProperty("hibernate.hikari.minimumIdle", env.getRequiredProperty("hibernate.hikari.minimumIdle"));
 
 		return props;
 	}
@@ -60,7 +62,7 @@ public class DataConfig {
 	@Bean(destroyMethod = "close")
 	public DataSource dataSource() {
 		log.debug("Starting datasource driver...");
-		HikariConfig config = new HikariConfig(properties());
+		HikariConfig config = HikariConfigurationUtil.loadConfiguration(properties());
 
 		return new HikariDataSource(config);
 	}
@@ -72,6 +74,7 @@ public class DataConfig {
 		entityManager.setPackagesToScan("com.juliuskrah.multipart.entity");
 		entityManager.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
 		entityManager.setDataSource(dataSource);
+		entityManager.setJpaProperties(properties());
 		entityManager.setPersistenceUnitName("julius");
 
 		return entityManager;
