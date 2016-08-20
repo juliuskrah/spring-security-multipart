@@ -1,0 +1,110 @@
+<!-- ======================================================================== -->
+<!-- Copyright 2016, Julius Krah										      -->
+<!-- by the @authors tag. See the LICENCE in the distribution for a		      -->
+<!-- full listing of individual contributors.							      -->
+<!--																	      -->
+<!-- Licensed under the Apache License, Version 2.0 (the "License");	      -->
+<!-- you may not use this file except in compliance with the License.	      -->
+<!-- You may obtain a copy of the License at							      -->
+<!-- http://www.apache.org/licenses/LICENSE-2.0							      -->
+<!-- Unless required by applicable law or agreed to in writing, software	  -->
+<!-- distributed under the License is distributed on an "AS IS" BASIS,		  -->
+<!-- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. -->
+<!-- See the License for the specific language governing permissions and	  -->
+<!-- limitations under the License.											  -->
+<!-- ======================================================================== -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}"
+	href="../static/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"
+	href="../static/css/main.css">
+<title>Login</title>
+</head>
+<body>
+	<div class="container">
+		<th:block th:if="${param.error}">
+			<div class="alert alert-danger alert-dismissable">
+				<button type="button" class="close" data-dismiss="alert"
+					aria-hidden="true">&times;</button>
+				<span th:inline="text">Your login credentials are incorrect</span>
+			</div>
+		</th:block>
+		<th:block th:if="${param.logout}">
+			<div class="alert alert-success alert-dismissable">
+				<button type="button" class="close" data-dismiss="alert"
+					aria-hidden="true">&times;</button>
+				<span th:inline="text">You have been logged out</span>
+			</div>
+		</th:block>
+	</div>
+	<section class="login">
+		<div class="titulo">User Login</div>
+		<form th:action="@{/login}" th:method="post" action="" method="post"
+			enctype="application/x-www-form-urlencoded">
+			<input type="text" required title="Username required" id="username"
+				name="username" placeholder="Username" data-icon="U"> <input
+				type="password" id="password" name="password" required
+				title="Password required" placeholder="Password" data-icon="x">
+			<div class="olvido">
+				<div class="col">
+					<a href="#" title="Ver Carásteres">Register</a>
+				</div>
+				<div class="col">
+					<a href="#" title="Recuperar Password">Fotgot Password?</a>
+				</div>
+			</div>
+			<input type="submit" class="enviar" value="Signin">
+		</form>
+	</section>
+	<!-- <div class="container">
+		<form class="form-narrow form-horizontal" method="post"
+			th:method="post" th:action="@{/login}" th:fragment="loginForm">
+
+			<fieldset>
+				<th:block th:if="${param.error}">
+					<div class="alert alert-danger alert-dismissable">
+						<button type="button" class="close" data-dismiss="alert"
+							aria-hidden="true">&times;</button>
+						<span th:inline="text">Your login credentials are incorrect</span>
+					</div>
+				</th:block>
+				<th:block th:if="${param.logout}">
+					<div class="alert alert-success alert-dismissable">
+						<button type="button" class="close" data-dismiss="alert"
+							aria-hidden="true">&times;</button>
+						<span th:inline="text">You have been logged out</span>
+					</div>
+				</th:block>
+				<div class="form-group">
+					<label for="username" class="col-lg-2 control-label">Username</label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="username"
+							name="username" placeholder="username" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="password" class="col-lg-2 control-label">Password</label>
+					<div class="col-lg-10">
+						<input type="password" class="form-control" id="password"
+							name="password" placeholder="password" />
+					</div>
+				</div>
+				<div class="checkbox">
+					<label class="col-lg-offset-2 col-lg-10">
+						<input type="checkbox" id="remember-me" name="remember-me" />Remember Me
+					</label>
+				</div>
+				<div class="form-group">
+					<div class="col-lg-offset-2 col-lg-10">
+						<button type="submit" class="btn btn-default">Signin</button>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+	</div> -->
+</body>
+</html>

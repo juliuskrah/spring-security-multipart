@@ -1,0 +1,5 @@
+id;first_name;last_name;password_hash;username;activated
+1;System;System;$2a$10$4Lk38ZGHpEHDqdtUUWplSOiWM6XUueGUvvcNDEGb57emvQ9ez5w1W;system;true
+2;Julius;Krah;$2a$10$JUgOw79cCJm.WGgCkY8vmuTVth1Fjamr5fkeg6fOfVhLhX0wsRopq;julius;true
+3;Bridget;Bentum;$2a$10$zSaufdfgid.HNSX1nIxlnOFLHBKoaXMgxfmPPEEdvaJOh/05RkmbO;ekuba;true
+4;Loretta;Krah;$2a$10$3zVteo9q4mFS1gsEdWsggO3CuVQpjsf.hSI5xl.LhNfqurPcRGiWm;loretta;true
