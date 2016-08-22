@@ -15,38 +15,16 @@
 */
 package com.juliuskrah.multipart.web;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-
-import com.juliuskrah.multipart.entity.Account;
 
 @Controller
 public class IndexController {
 
-	private final Logger log = LoggerFactory.getLogger(this.getClass());
-
 	@GetMapping("/")
-	public String index(Model model) {
-		model.addAttribute("account", new Account());
+	public String index() {
 
 		return "index";
 	}
 
-	@PostMapping("/")
-	public String index(@ModelAttribute Account account, @RequestParam("file") MultipartFile file, Errors errors) {
-		if (errors.hasErrors()) {
-			return "index";
-		}
-		log.debug("Filename is {}", file.getOriginalFilename());
-
-		return "redirect:/";
-	}
 }

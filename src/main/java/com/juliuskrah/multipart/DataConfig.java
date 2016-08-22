@@ -68,12 +68,11 @@ public class DataConfig {
 	}
 
 	@Bean
-	public LocalContainerEntityManagerFactoryBean entityManager(DataSource dataSource) {
+	public LocalContainerEntityManagerFactoryBean entityManager() {
 		log.debug("Starting EntityManager...");
 		LocalContainerEntityManagerFactoryBean entityManager = new LocalContainerEntityManagerFactoryBean();
 		entityManager.setPackagesToScan("com.juliuskrah.multipart.entity");
 		entityManager.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-		entityManager.setDataSource(dataSource);
 		entityManager.setJpaProperties(properties());
 		entityManager.setPersistenceUnitName("julius");
 
@@ -96,7 +95,7 @@ public class DataConfig {
 		// liquibase.setDefaultSchema(liquibaseProperties.getDefaultSchema());
 		liquibase.setDropFirst(env.getRequiredProperty("liquabase.is-drop-first", Boolean.class));
 		liquibase.setShouldRun(env.getRequiredProperty("liquabase.is-enabled", Boolean.class));
-		log.debug("Configuring Liquibase");
+		log.debug("Configuring Liquibase...");
 
 		return liquibase;
 	}

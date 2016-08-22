@@ -1,0 +1,156 @@
+<!-- ======================================================================== -->
+<!-- Copyright 2016, Julius Krah										      -->
+<!-- by the @authors tag. See the LICENCE in the distribution for a		      -->
+<!-- full listing of individual contributors.							      -->
+<!--																	      -->
+<!-- Licensed under the Apache License, Version 2.0 (the "License");	      -->
+<!-- you may not use this file except in compliance with the License.	      -->
+<!-- You may obtain a copy of the License at							      -->
+<!-- http://www.apache.org/licenses/LICENSE-2.0							      -->
+<!-- Unless required by applicable law or agreed to in writing, software	  -->
+<!-- distributed under the License is distributed on an "AS IS" BASIS,		  -->
+<!-- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. -->
+<!-- See the License for the specific language governing permissions and	  -->
+<!-- limitations under the License.											  -->
+<!-- ======================================================================== -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org"
+	xmlns:layout="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta th:name="_csrf" th:content="${_csrf.token}">
+<meta th:name="_csrf_header" th:content="${_csrf.headerName}">
+<link rel="stylesheet" media="screen" type="text/css"
+	href="../../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
+<title>Layout</title>
+</head>
+<body>
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand logo" th:href="@{/}"> <span>Spring-Multipart</span>
+					<span class="navbar-version">v1.0</span>
+				</a>
+			</div>
+
+			<div class="collapse navbar-collapse" translate="yes">
+				<ul class="nav navbar-nav navbar-right">
+					<li class="active"><a th:href="@{/}"> <span
+							class="glyphicon glyphicon-home"></span> <span class="hidden-sm">Home</span>
+					</a></li>
+					<th:block sec:authorize="isAuthenticated()">
+						<li class="dropdown pointer"><a class="dropdown-toggle"
+							href="" data-toggle="dropdown" role="button" aria-haspopup="true"
+							aria-expanded="false"> <span> <span
+									class="glyphicon glyphicon-th-list"></span> <span
+									class="hidden-sm"> Entities </span> <b class="caret"></b>
+							</span>
+						</a>
+							<ul class="dropdown-menu">
+
+							</ul></li>
+					</th:block>
+					<li class="dropdown pointer"><a class="dropdown-toggle"
+						href="" data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false"> <span> <span
+								class="glyphicon glyphicon-user"></span> <span class="hidden-sm">
+									Account </span> <b class="caret"></b>
+						</span>
+					</a>
+						<ul class="dropdown-menu">
+							<th:block sec:authorize="isAuthenticated()">
+								<li><a href="../profile.html" th:href="@{/u/profile}"> <span
+										class="glyphicon glyphicon-wrench"></span>&nbsp; <span>Settings</span>
+								</a></li>
+								<li><a href=""> <span class="glyphicon glyphicon-lock"></span>&nbsp;
+										<span>Password</span>
+								</a></li>
+								<li><a th:href="@{/logout}"> <span
+										class="glyphicon glyphicon-log-out"></span>&nbsp; <span>Sign
+											out</span>
+								</a></li>
+							</th:block>
+							<th:block sec:authorize="isAnonymous()">
+								<li><a th:href="@{/login}"> <span
+										class="glyphicon glyphicon-log-in"></span>&nbsp; <span>Sign
+											in</span>
+								</a></li>
+								<li><a href=""> <span
+										class="glyphicon glyphicon-plus-sign"></span>&nbsp; <span>Register</span>
+								</a></li>
+							</th:block>
+						</ul></li>
+					<th:block sec:authorize="hasRole('ADMIN')">
+						<li class="dropdown pointer"><a class="dropdown-toggle"
+							href="" data-toggle="dropdown" role="button" aria-haspopup="true"
+							aria-expanded="false"> <span> <span
+									class="glyphicon glyphicon-tower"></span> <span
+									class="hidden-sm">Administration</span> <b class="caret"></b>
+							</span>
+						</a>
+							<ul class="dropdown-menu">
+								<li><a href=""> <span class="glyphicon glyphicon-user"></span>&nbsp;
+										<span>User management</span>
+								</a></li>
+								<li><a href=""> <span
+										class="glyphicon glyphicon-eye-open"></span>&nbsp; <span>User
+											tracker</span>
+								</a></li>
+								<li><a href=""> <span
+										class="glyphicon glyphicon-dashboard"></span>&nbsp; <span>Metrics</span>
+								</a></li>
+								<li><a href=""> <span class="glyphicon glyphicon-heart"></span>&nbsp;
+										<span>Health</span>
+								</a></li>
+								<li><a href=""> <span
+										class="glyphicon glyphicon-list-alt"></span>&nbsp; <span>Configuration</span>
+								</a></li>
+								<li><a href=""> <span class="glyphicon glyphicon-bell"></span>&nbsp;
+										<span>Audits</span>
+								</a></li>
+								<li><a href=""> <span class="glyphicon glyphicon-tasks"></span>&nbsp;
+										<span>Logs</span>
+								</a></li>
+								<li><a href=""> <span class="glyphicon glyphicon-book"></span>&nbsp;
+										<span>API</span>
+								</a></li>
+
+								<li><a href='/hsqldb' target="_tab"> <span
+										class="glyphicon glyphicon-hdd"></span>&nbsp; <span>Database</span>
+								</a></li>
+							</ul></li>
+					</th:block>
+					<li><a class="dropdown-toggle" href="" data-toggle="dropdown"
+						role="button" aria-haspopup="true" aria-expanded="false"> <span>
+								<span class="glyphicon glyphicon-flag"></span> <span
+								class="hidden-sm">Language</span> <b class="caret"></b>
+						</span>
+					</a>
+						<ul class="dropdown-menu">
+							<li><a href="">English</a></li>
+							<li><a href="">French</a></li>
+						</ul></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="container">
+		<div class="row well" layout:fragment="content"></div>
+		<footer>
+			<p layout:fragment="footer">&copy; [[${#calendars.year(#calendars.createNow())}]] Julius Krah</p>
+		</footer>
+	</div>
+	<script src="../../static/js/jquery.min.js"
+		th:src="@{/js/jquery.min.js}"></script>
+	<script src="../../static/js/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>
+</body>
+</html>

@@ -38,6 +38,8 @@ import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 
+import nz.net.ultraq.thymeleaf.LayoutDialect;
+
 @Configuration
 @ComponentScan
 @PropertySource("classpath:application.properties")
@@ -69,6 +71,7 @@ public class RootConfig implements ApplicationContextAware {
 	public TemplateEngine templateEngine() {
 		SpringTemplateEngine engine = new SpringTemplateEngine();
 		engine.addDialect(new SpringSecurityDialect());
+		engine.addDialect(new LayoutDialect());
 		engine.setEnableSpringELCompiler(env.getRequiredProperty("template.el-compiler", Boolean.class));
 		engine.setTemplateResolver(templateResolver());
 		return engine;
