@@ -64,7 +64,7 @@ public class SecurityIntializer extends AbstractSecurityWebApplicationInitialize
 ```
 
 ## Run the application
-`mvn clean jetty:run` visit <http://localhost:8080>  
+`mvn exec:java` visit <http://localhost:8080>  
 
 With this three things in mind, you can save hours on debuging.
 

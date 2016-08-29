@@ -17,11 +17,11 @@ databaseChangeLog:
   - property:
       name: now
       value: now()
-      dbms: h2,mysql,hsqldb
+      dbms: h2,mysql
   - property:
       name: now
       value: current_timestamp
-      dbms: postgresql
+      dbms: postgresql,hsqldb
   - property:
       name: now
       value: sysdate
@@ -76,6 +76,23 @@ databaseChangeLog:
                   valueBoolean: false
                   constraints:
                     nullable: false
+              - column:
+                  name: created_by
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  defaultValueDate: ${now}
+                  constraints:
+                    nullable: false
+              - column:
+                  name: last_modified_by
+                  type: varchar(50)
+              - column:
+                  name: last_modified_date
+                  type: timestamp
         - createIndex:
             indexName: idx_account_username
             tableName: account

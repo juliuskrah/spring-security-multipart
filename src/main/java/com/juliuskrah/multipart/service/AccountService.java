@@ -19,6 +19,7 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 import com.juliuskrah.multipart.entity.Account;
+import com.juliuskrah.multipart.entity.Authority;
 
 public interface AccountService {
 
@@ -31,4 +32,10 @@ public interface AccountService {
 	public Optional<Account> findAccountByUsername(String username);
 
 	public Stream<Account> findAccountByLastName(String lastName);
+
+	public Optional<Authority> findAuthorityById(String id);
+
+	public Authority saveAuthroity(Authority authority);
+
+	public void deleteAuthority(Authority authority);
 }

@@ -29,7 +29,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-public class Account extends BaseEntity implements Serializable {
+public class Account extends AbstractAuditingEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -149,7 +149,11 @@ public class Account extends BaseEntity implements Serializable {
 			.append(" firstName=").append(firstName).append(',')
 			.append(" lastName=").append(lastName).append(',')
 			.append(" username=").append(username).append(',')
-			.append(" activated=").append(activated).append('}');
+			.append(" activated=").append(activated).append(',')
+			.append(" createdBy=").append(this.getCreatedBy()).append(',')
+			.append(" lastModifiedBy=").append(this.getLastModifiedBy()).append(',')
+			.append(" createdDate=").append(this.getCreatedDate()).append(',')
+			.append(" lastModifiedDate=").append(this.getLastModifiedDate()).append('}');
 		// @formatter:on
 
 		return sb.toString();

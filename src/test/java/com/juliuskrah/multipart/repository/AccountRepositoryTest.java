@@ -46,6 +46,7 @@ public class AccountRepositoryTest extends ApplicationTest {
 		a.setFirstName("Administrator");
 		a.setLastName("Administrator");
 		a.setUsername("admin");
+		a.setCreatedBy("system");
 		a.setAuthorities(Stream.of(new Authority("ROLE_USER")).collect(Collectors.toSet()));
 		a.setPassword(encoder.encode("system"));
 
@@ -82,6 +83,7 @@ public class AccountRepositoryTest extends ApplicationTest {
 		a.setLastName("User");
 		a.setUsername("user");
 		a.setPassword(encoder.encode("user"));
+		a.setCreatedBy("system");
 
 		a = accountRepository.save(a);
 

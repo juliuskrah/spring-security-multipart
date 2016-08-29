@@ -25,15 +25,24 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.juliuskrah.multipart.entity.Account;
+import com.juliuskrah.multipart.entity.Authority;
 import com.juliuskrah.multipart.repository.AccountRepository;
+import com.juliuskrah.multipart.repository.AuthorityRepository;
 import com.juliuskrah.multipart.service.AccountService;
 
+/**
+ * 
+ * @author Julius Krah
+ *
+ */
 @Service
 @Transactional
 public class AccountServiceImpl implements AccountService {
 
 	@Inject
 	private Provider<AccountRepository> accountRepositoryProvider;
+	@Inject
+	private Provider<AuthorityRepository> authorityRepositoryProvider;
 
 	@Override
 	public Optional<Account> findAccountById(Long id) {
@@ -58,6 +67,21 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public Stream<Account> findAccountByLastName(String lastName) {
 		return accountRepositoryProvider.get().findByLastName(lastName);
+	}
+
+	@Override
+	public Optional<Authority> findAuthorityById(String id) {
+		return authorityRepositoryProvider.get().get(id);
+	}
+
+	@Override
+	public Authority saveAuthroity(Authority authority) {
+		return authorityRepositoryProvider.get().save(authority);
+	}
+
+	@Override
+	public void deleteAuthority(Authority authority) {
+		authorityRepositoryProvider.get().delete(authority);
 	}
 
 }

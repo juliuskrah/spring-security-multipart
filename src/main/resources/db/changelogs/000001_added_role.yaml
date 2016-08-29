@@ -19,6 +19,10 @@ databaseChangeLog:
       author: julius
       dbms: postgres,oracle,hsqldb
       changes:
+        - dropDefaultValue:
+            columnDataType: timestamp
+            columnName: created_date
+            tableName: account
         - createTable:
             tableName: authority
             columns:
