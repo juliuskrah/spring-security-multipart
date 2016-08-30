@@ -26,6 +26,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
@@ -97,6 +98,11 @@ public class DataConfig {
 		log.debug("Configuring Liquibase...");
 
 		return liquibase;
+	}
+
+	@Bean
+	public PersistenceExceptionTranslationPostProcessor exceptionTranslationPostProcessor() {
+		return new PersistenceExceptionTranslationPostProcessor();
 	}
 
 }

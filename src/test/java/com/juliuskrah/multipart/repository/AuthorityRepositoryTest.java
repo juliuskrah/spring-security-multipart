@@ -1,4 +1,5 @@
 package com.juliuskrah.multipart.repository;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -41,13 +42,14 @@ public class AuthorityRepositoryTest extends ApplicationTest {
 		assertThat(a.get().getName(), is("ROLE_ADMIN"));
 	}
 
-	@Test(expected = NullPointerException.class)
+	@Test
 	public void testDelete() {
 		Authority a = authorityRepository.get("ROLE_SUPERVISOR").get();
 		authorityRepository.delete(a);
 
 		assertThat(a.getName(), is("ROLE_SUPERVISOR"));
 
-		authorityRepository.get("ROLE_SUPERVISOR");
+		assertThat(authorityRepository.get("ROLE_SUPERVISOR").
+				orElse(new Authority("ROLE_NOT_FOUND")), is(new Authority("ROLE_NOT_FOUND")));
 	}
 }

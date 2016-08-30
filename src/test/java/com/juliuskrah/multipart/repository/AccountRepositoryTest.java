@@ -23,10 +23,10 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.inject.Inject;
-import javax.persistence.NoResultException;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.juliuskrah.multipart.ApplicationTest;
@@ -90,7 +90,7 @@ public class AccountRepositoryTest extends ApplicationTest {
 		assertThat(a.getId(), is(1003L));
 	}
 
-	@Test(expected = NoResultException.class)
+	@Test(expected = EmptyResultDataAccessException.class)
 	public void testDelete() {
 		Account a = accountRepository.findByUsername("julius").get();
 		accountRepository.delete(a);
