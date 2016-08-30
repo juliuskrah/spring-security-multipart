@@ -92,7 +92,6 @@ public class DataConfig {
 		liquibase.setDataSource(dataSource);
 		liquibase.setChangeLog("classpath:db/master.yaml");
 		liquibase.setContexts(env.getRequiredProperty("liquibase.contexts"));
-		// liquibase.setDefaultSchema(liquibaseProperties.getDefaultSchema());
 		liquibase.setDropFirst(env.getRequiredProperty("liquabase.is-drop-first", Boolean.class));
 		liquibase.setShouldRun(env.getRequiredProperty("liquabase.is-enabled", Boolean.class));
 		log.debug("Configuring Liquibase...");
