@@ -117,6 +117,12 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
 			<version>${spring.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -185,15 +191,27 @@
 		</dependency>
 
 		<!-- Logging -->
-		<dependency>
+		<dependency><!-- Send all Slf4J logs to Log4J -->
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-slf4j-impl</artifactId>
 			<version>${log4j2.version}</version>
 			<scope>runtime</scope>
 		</dependency>
-		<dependency>
+		<dependency><!-- Cleanup log resources in application container on shutdown -->
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-web</artifactId>
+			<version>${log4j2.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency><!-- Send liquibase logs to Log4J -->
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-liquibase</artifactId>
+			<version>${log4j2.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency><!-- Send commons-logging(Used by Spring) logs to Log4J -->
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-jcl</artifactId>
 			<version>${log4j2.version}</version>
 			<scope>runtime</scope>
 		</dependency>

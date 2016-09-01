@@ -26,6 +26,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
@@ -92,12 +93,16 @@ public class DataConfig {
 		liquibase.setDataSource(dataSource);
 		liquibase.setChangeLog("classpath:db/master.yaml");
 		liquibase.setContexts(env.getRequiredProperty("liquibase.contexts"));
-		// liquibase.setDefaultSchema(liquibaseProperties.getDefaultSchema());
 		liquibase.setDropFirst(env.getRequiredProperty("liquabase.is-drop-first", Boolean.class));
 		liquibase.setShouldRun(env.getRequiredProperty("liquabase.is-enabled", Boolean.class));
 		log.debug("Configuring Liquibase...");
 
 		return liquibase;
+	}
+
+	@Bean
+	public PersistenceExceptionTranslationPostProcessor exceptionTranslationPostProcessor() {
+		return new PersistenceExceptionTranslationPostProcessor();
 	}
 
 }

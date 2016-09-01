@@ -46,7 +46,7 @@ public class HibernateBaseRepository<T, ID extends Serializable> implements Base
 	public Optional<T> get(ID id) {
 		Session session = this.em.unwrap(Session.class);
 
-		return Optional.of(session.get(persistentClass, id));
+		return Optional.ofNullable(session.get(persistentClass, id));
 	}
 
 	@Override
