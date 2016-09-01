@@ -237,9 +237,6 @@
 				<version>${exec-maven-plugin.version}</version>
 				<executions>
 					<execution>
-						<id>default-cli</id>
-						<!--<phase>validate</phase> --> <!-- or any other phase you want. -->
-						<phase>integration-test</phase>
 						<goals>
 							<goal>java</goal>
 						</goals>
