@@ -249,7 +249,7 @@
 		<finalName>${project.artifactId}</finalName>
 		<defaultGoal>exec:java</defaultGoal>
 		<plugins>
-			<plugin>
+		<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
 				<version>${exec-maven-plugin.version}</version>
