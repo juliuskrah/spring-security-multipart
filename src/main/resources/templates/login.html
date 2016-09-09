@@ -48,14 +48,16 @@
 			<input type="text" required title="Username required" id="username"
 				name="username" placeholder="Username" data-icon="U"> <input
 				type="password" id="password" name="password" required
-				title="Password required" placeholder="Password" data-icon="x"><br>
-				<input type="checkbox" name="remember-me" id="remember-me">Remember me
+				placeholder="Password" data-icon="x" data-toggle="tooltip"
+				data-title="Caps lock is on" data-trigger="manual"><br>
+			<input type="checkbox" name="remember-me" id="remember-me">Remember
+			me
 			<div class="olvido">
 				<div class="col">
 					<a href="#" title="Ver Carásteres">Register</a>
 				</div>
 				<div class="col">
-					<a href="#" title="Recuperar Password">Fotgot Password?</a>
+					<a href="#" title="Recuperar Password">Forgot Password?</a>
 				</div>
 			</div>
 			<input type="submit" class="enviar" value="Signin">
@@ -63,5 +65,57 @@
 	</section>
 	<script src="../static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
 	<script src="../static/js/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>
+	<script type="text/javascript">
+		$('[type=password]')
+				.keypress(
+						function(e) {
+							var $password = $(this), tooltipVisible = $(
+									'.tooltip').is(':visible'), s = String
+									.fromCharCode(e.which);
+
+							//Check if capslock is on. No easy way to test for this
+							//Tests if letter is upper case and the shift key is NOT pressed.
+							if (s.toUpperCase() === s && s.toLowerCase() !== s
+									&& !e.shiftKey) {
+								if (!tooltipVisible)
+									$password.tooltip('show');
+							} else {
+								if (tooltipVisible)
+									$password.tooltip('hide');
+							}
+							$('[type=password]')
+									.keypress(
+											function(e) {
+												var $password = $(this), tooltipVisible = $(
+														'.tooltip').is(
+														':visible'), s = String
+														.fromCharCode(e.which);
+
+												//Check if capslock is on. No easy way to test for this
+												//Tests if letter is upper case and the shift key is NOT pressed.
+												if (s.toUpperCase() === s
+														&& s.toLowerCase() !== s
+														&& !e.shiftKey) {
+													if (!tooltipVisible)
+														$password
+																.tooltip('show');
+												} else {
+													if (tooltipVisible)
+														$password
+																.tooltip('hide');
+												}
+
+												//Hide the tooltip when moving away from the password field
+												$password.blur(function(e) {
+													$password.tooltip('hide');
+												});
+											});
+
+							//Hide the tooltip when moving away from the password field
+							$password.blur(function(e) {
+								$password.tooltip('hide');
+							});
+						});
+	</script>
 </body>
 </html>
