@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/juliuskrah/spring-security-multipart.svg?branch=master)](https://travis-ci.org/juliuskrah/spring-security-multipart)
+
 # Spring-security with Multipart uploads
 This is a simple project that demonstrates how to add Multipart uploads to a Spring-security project.  
 The headache with Multipart uploads in a Spring-security project using Java only configuration is what motivated me to create this template project.  
