@@ -38,11 +38,13 @@
 		<junit.version>4.12</junit.version>
 		<liquibase.version>3.5.2</liquibase.version>
 		<log4j2.version>2.6.2</log4j2.version>
+		
 		<mainClass>com.juliuskrah.multipart.Main</mainClass>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		
 		<thymeleaf.version>3.0.1.RELEASE</thymeleaf.version>
 		<thymeleaf-extras.version>3.0.0.RELEASE</thymeleaf-extras.version>
-		<thymeleaf-layouts.version>2.0.1</thymeleaf-layouts.version>
+		<thymeleaf-layouts.version>2.0.3</thymeleaf-layouts.version>
 		<tomcat.version>8.5.4</tomcat.version>
 		<servlet.version>3.1.0</servlet.version>
 		<slf4j.version>1.7.21</slf4j.version>
