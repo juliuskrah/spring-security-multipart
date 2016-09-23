@@ -91,7 +91,7 @@ public class DataConfig {
 	public SpringLiquibase liquibase(DataSource dataSource) {
 		SpringLiquibase liquibase = new SpringLiquibase();
 		liquibase.setDataSource(dataSource);
-		liquibase.setChangeLog("classpath:db/master.yaml");
+		liquibase.setChangeLog(env.getRequiredProperty("liquibase.changelog"));
 		liquibase.setContexts(env.getRequiredProperty("liquibase.contexts"));
 		liquibase.setDropFirst(env.getRequiredProperty("liquabase.is-drop-first", Boolean.class));
 		liquibase.setShouldRun(env.getRequiredProperty("liquabase.is-enabled", Boolean.class));
