@@ -40,28 +40,26 @@ public class HibernateAccountRepository extends HibernateBaseRepository<Account,
 
 	@Override
 	public Optional<Account> findByUsername(String username) {
-		Session session = this.em.unwrap(Session.class);
-		CriteriaBuilder qb = session.getCriteriaBuilder();
+		CriteriaBuilder qb = this.em.getCriteriaBuilder();
 		CriteriaQuery<Account> query = qb.createQuery(Account.class);
 		Root<Account> root = query.from(Account.class);
 		Predicate predicate = qb.like(root.get(Account_.username), username);
 		query.where(predicate);
-		Query q = session.createQuery(query);
-		
+		Query q = this.em.createQuery(query);
+
 		return Optional.of((Account) q.getSingleResult());
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public Stream<Account> findByLastName(String lastName) {
-		CriteriaBuilder qb = this.em.getCriteriaBuilder();
+		Session session = this.em.unwrap(Session.class);
+		CriteriaBuilder qb = session.getCriteriaBuilder();
 		CriteriaQuery<Account> cq = qb.createQuery(Account.class);
 		Root<Account> root = cq.from(Account.class);
 		Predicate predicate = qb.like(root.get(Account_.lastName), lastName);
 		cq.where(predicate);
-		Query query = this.em.createQuery(cq);
-		
-		return query.getResultList().stream();
+
+		return session.createQuery(cq).stream();
 	}
 
 }

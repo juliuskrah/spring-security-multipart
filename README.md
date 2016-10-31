@@ -8,7 +8,7 @@ In most stacks however, switching to spring-boot is not an option and this templ
 
 ## Configuration
 In configuring multipart into a Spring-security application, you need to consider three things:  
-1    Your multipart configuration bean needs to be in the *ROOT* configuration class:
+1.    Your multipart configuration bean needs to be in the *ROOT* configuration class:
 ```java
 @Configuration
 @ComponentScan
@@ -46,7 +46,7 @@ public class ServletInitializer extends AbstractAnnotationConfigDispatcherServle
 }
 ```
 
-2    Spring-security will only load the multipart configuration if the bean name is `filterMultipartResolver`. Any other bean name will be ignored:
+2.    Spring-security will only load the multipart configuration if the bean name is `filterMultipartResolver`. Any other bean name will be ignored:
 ```java
 @Bean(name = "filterMultipartResolver")
 public MultipartResolver filterMultipartResolver() {
@@ -54,7 +54,7 @@ public MultipartResolver filterMultipartResolver() {
 }
 ```
 
-3    From point two above, it is indicative that a `Filter` must be registered for multipart. In Spring-security this filter must be registered before the *Security Filter Chain*:
+3.    From point two above, it is indicative that a `Filter` must be registered for multipart. In Spring-security this filter must be registered before the *Security Filter Chain*:
 ```java
 public class SecurityIntializer extends AbstractSecurityWebApplicationInitializer {
 
