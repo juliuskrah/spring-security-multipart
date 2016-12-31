@@ -248,7 +248,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>${project.artifactId}</finalName>
+		<finalName>multipart</finalName>
 		<defaultGoal>exec:java</defaultGoal>
 		<plugins>
 		<plugin>
